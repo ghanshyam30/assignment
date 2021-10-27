@@ -13,13 +13,13 @@ def test_raw():
     repositories_section_list = driver.find_elements_by_class_name('Box-row')
     repositories_data_ui = {}
     for section in repositories_section_list:
-        repo_name =  ""
-        repo_name = section.find_element_by_tag_name("h3").find_element_by_tag_name("a").text
+        repo_name = section.find_element_by_xpath("following::h3/a").text
         print(repo_name)
-        repo_description = ""
-        repo_description = section.find_element_by_xpath("following::p[@itemprop='description']").text
+        repo_description = section.find_element_by_xpath("following::p").text
         print(repo_description)
         repositories_data_ui[repo_name] = repo_description
+
+    driver.find_element_by_tag_name
 
     print(len(repositories_data_ui))
     print(repositories_data_ui)
