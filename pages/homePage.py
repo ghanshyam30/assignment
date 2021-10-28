@@ -8,8 +8,8 @@ from pages.initialize import initialize
 class homePage(initialize):
     # REPOSITORIES_LOCATOR = (By.XPATH, "//a[@class='UnderlineNav-item ' and @href='/orgs/django/repositories']")
     REPOSITORIES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'repositories')]"
-    REPOSITORIES_SECTION_LIST_LOCATOR = "//li[@class='Box-row']"
-    # REPOSITORIES_SECTION_LIST_LOCATOR = "//*[@itemprop='owns']"
+    # REPOSITORIES_SECTION_LIST_LOCATOR = "//li[@class='Box-row']"
+    REPOSITORIES_SECTION_LIST_LOCATOR = "//*[@itemprop='owns']"
     # REPOSITORIES_SECTION_LIST_LOCATOR = "//div[contains(@class,'d-inline-block')]"
     REPOSITORIES_NAME_LOCATOR = "following::h3/a"
     REPOSITORIES_DESCRIPTION_LOCATOR = "following::p"
