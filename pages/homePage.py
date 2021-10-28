@@ -28,7 +28,7 @@ class homePage(initialize):
         self.driver.refresh()
     
     def find_repository_records(self):
-        # self.wait_for_element.until(EC.presence_of_all_elements_located(self.driver.find_element_by_xpath(self.REPOSITORIES_SECTION_LIST_LOCATOR)))
+        self.wait_for_element.until(EC.presence_of_all_elements_located((By.XPATH,self.REPOSITORIES_SECTION_LIST_LOCATOR)))
         repositories_section_list = self.driver.find_elements_by_xpath(self.REPOSITORIES_SECTION_LIST_LOCATOR)
         repositories_data_ui = {}
         for record in repositories_section_list:
