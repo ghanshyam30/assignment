@@ -1,17 +1,3 @@
-# import requests
-# import lxml.html
-
-# def test_get():
-#     BASE_URI = "https://github.com"
-#     ENDPOINT = "/django"
-
-#     URL = BASE_URI + ENDPOINT
-#     response = requests.get(URL,stream=True)
-#     response.raw.decode_content = True
-#     tree = lxml.html.parse(response.raw)
-#     first_repo = tree("title")
-#     print(first_repo)
-
 from lxml import html
 import requests
 def test_get():
