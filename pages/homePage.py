@@ -6,11 +6,12 @@ from config.config import Env_Variables
 from pages.initialize import initialize
 
 class homePage(initialize):
-    # REPOSITORIES_LOCATOR = (By.XPATH, "//a[@class='UnderlineNav-item ' and @href='/orgs/django/repositories']")
-    REPOSITORIES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'repositories')]"
+    
+    #Locators
+    REPOSITORIES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'repositories')]"    
+    # Old locator for recerence
     # REPOSITORIES_SECTION_LIST_LOCATOR = "//li[@class='Box-row']"
     REPOSITORIES_SECTION_LIST_LOCATOR = "//*[@itemprop='owns']"
-    # REPOSITORIES_SECTION_LIST_LOCATOR = "//div[contains(@class,'d-inline-block')]"
     REPOSITORIES_NAME_LOCATOR = "following::h3/a"
     REPOSITORIES_DESCRIPTION_LOCATOR = "following::p"
 
@@ -30,25 +31,18 @@ class homePage(initialize):
     def find_repository_records(self):
         self.wait_for_element.until(EC.presence_of_all_elements_located((By.XPATH,self.REPOSITORIES_SECTION_LIST_LOCATOR)))
         repositories_section_list = self.driver.find_elements_by_xpath(self.REPOSITORIES_SECTION_LIST_LOCATOR)
+        # dictionary to store repoository name,description pairs
         repositories_data_ui = {}
-        for record in repositories_section_list:
-            # repo_name = ""
-            # repo_description = ""
-            
-            # repo_name = record.find_element_by_xpath("following::h3/a").text
-            # print(repo_name)
-            # repo_description = record.find_element_by_xpath("following::p").text
-            # print(repo_description)
-            
-            try:
+        for record in repositories_section_list:            
+            try: #Get the repository name
                 repo_name = record.find_element_by_xpath("following::h3/a").text
-                print(repo_name)
+                # print(repo_name)
             except Exception as e:
                 print("Repo name not found")
-            try:
+            try: #Get the repository description
                 repo_description = record.find_element_by_xpath("following::p").text
-                print(repo_description)
-            except Exception as e:
+                # print(repo_description)
+            except Exception as e: # Exception handling
                 print("Repo description not fond")
             
             if repo_name and repo_description:
