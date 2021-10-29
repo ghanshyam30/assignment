@@ -2,11 +2,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver import Firefox
 from pages.homePage import homePage
-# from config.config import Env_Variables
 from config.config import Env_Variables
 
-   
-    # driver.get(Env_Variables.BASE_URL)
 
 def test_openHome():
     random = homePage()
