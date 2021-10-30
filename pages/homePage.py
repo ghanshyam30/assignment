@@ -59,7 +59,7 @@ class homePage(initialize):
             elif  repo_name and not repo_description:
                 repositories_data_ui[repo_name] = "NA"
         
-        return len(repositories_section_list)
+        return repositories_data_ui
     
     def closeDriver(self):
         self.driver.close()
