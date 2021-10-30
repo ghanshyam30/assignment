@@ -1,5 +1,7 @@
+import pytest
 from lxml import html
 import requests
+@pytest.mark.skip
 def test_get():
     BASE_URI = "https://github.com"
     ENDPOINT = "/orgs/django/repositories"

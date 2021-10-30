@@ -1,6 +1,9 @@
 from selenium import webdriver
 from config.config import Env_Variables
+import pytest
 
+
+@pytest.mark.skip
 def test_raw():
     driver = webdriver.Firefox(executable_path=Env_Variables['DRIVER_BIN'])
     driver.get(Env_Variables['BASE_URL'])
