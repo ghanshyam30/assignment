@@ -42,17 +42,19 @@ class homePage(initialize):
         repositories_section_list = self.driver.find_elements_by_xpath(self.REPOSITORIES_SECTION_LIST_LOCATOR)
         # dictionary to store repoository name,description pairs
         repositories_data_ui = {}
-        for record in repositories_section_list:            
+        for record in repositories_section_list:  
+            repo_name = repo_description = ""          
             try: #Get the repository name
-                repo_name = record.find_element_by_xpath("following::h3/a").text
+                repo_name = record.find_element_by_xpath("descendant::h3/a").text
                 # print(repo_name)
             except Exception as e:
                 print("Repo name not found")
             try: #Get the repository description
-                repo_description = record.find_element_by_xpath("following::p").text
+                repo_description = record.find_element_by_xpath("descendant::p").text
                 # print(repo_description)
             except Exception as e: # Exception handling
                 print("Repo description not fond")
+
             
             if repo_name and repo_description:
                 repositories_data_ui[repo_name] = repo_description
