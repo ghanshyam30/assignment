@@ -12,7 +12,8 @@ command to run
 3. test - Has all the test class files
 		-conftest.py - Has setup and teardown defined
 		-BaseTest.py - Requests the fixute for setup, all test files should use BaseTest as parent class to be able to request setup fixture.
-4. pytest.ini - file has default command line options to run pytest command
+4. reports - Test exectuion report is saved in this directory with report.html name
+5. pytest.ini - file has default command line options to run pytest command
 
 ## References
 - HTML parser referece - https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests
