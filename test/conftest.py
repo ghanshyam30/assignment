@@ -17,3 +17,6 @@ def setup(request):
     # Teardown
     yield
     driver.close()  # Replace this with quit() later
+
+def pytest_html_report_title(report):
+    report.title = "Assignment: test report"
