@@ -1,11 +1,11 @@
 # Project Name : Assignment
 UI and REST hybrid automation
 ## How to use
-Root directory of the project: assignment. There are to markers divided as sanity and regression, sanity has the base use case and regression has other use cases
+Root directory of the project: assignment. There are to markers divided as smoke and regression, smoke has the base use case and regression has other use cases
 **Command to run test**
 > pytest -m {marker}
 
->ex: pytest -m sanity
+>ex: pytest -m smoke
 
 ## Directory structure
 1. additonalLibraries - Has functionality other than selenium or rest library
