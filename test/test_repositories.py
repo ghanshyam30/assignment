@@ -11,6 +11,7 @@ from additionalLibraries.additional_features import Additional_Functionalities
 class Test_Repositories(BaseTest):
     
     ui_repo_dict = {}
+    @pytest.mark.ui
     @pytest.mark.smoke
     def test_get_repositories_info(self):
         self.homePageObj = homePage(self.driver)        
