@@ -28,7 +28,7 @@ class Test_Repositories(BaseTest):
         print(URL)
         raw_response = requests.get(URL)
         assert raw_response.status_code == 200
-        Test_Repositories.api_repo_dict= Additional_Functionalities.convert_html_dict(raw_response.text)
+        Test_Repositories.api_repo_dict= Additional_Functionalities.convert_repo_html_dict(raw_response.text)
         # print(Test_Repositories.api_repo_dict)        
 
 @pytest.mark.smoke
