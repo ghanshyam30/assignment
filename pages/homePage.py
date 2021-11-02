@@ -16,7 +16,7 @@ class homePage(BasePage):
     REPOSITORIES_DESCRIPTION_LOCATOR = "following::p"
 
     PACKAGES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'packages')]"
-
+    PROJECTS_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'projects')]"
     
     def __init__(self,driver):
         super().__init__(driver)
@@ -32,6 +32,8 @@ class homePage(BasePage):
             set_category = self.REPOSITORIES_LOCATOR
         elif "package" in category_param.lower():
             set_category = self.PACKAGES_LOCATOR
+        elif "project" in category_param.lower():
+            set_category = self.PROJECTS_LOCATOR
         
         # category_element = self.driver.find_element_by_xpath(set_category)
         self.click_element(set_category)
