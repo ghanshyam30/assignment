@@ -11,7 +11,10 @@ from additionalLibraries.additional_features import Additional_Functionalities
 
 class Test_Projects(BaseTest):
     ui_projects_dict ={}
-    @pytest.mark.temp
+    api_projects_dict ={}
+
+    # UI test to find all projects
+    @pytest.mark.regression
     def test_get_projects_info(self):
         self.homePageObj = homePage(self.driver)        
         self.homePageObj.select_category("projects")
@@ -20,18 +23,21 @@ class Test_Projects(BaseTest):
         Test_Projects.ui_projects_dict = self.projectsPageObj.find_project_records()
         print(Test_Projects.ui_projects_dict)
 
-    api_projects_dict ={}
-    @pytest.mark.temp
+    # API test to find all projects
+    @pytest.mark.regression
     def test_get_projects_api(self):
-        
+        # Prepare request
         ENDPOINT = "/orgs/django/projects"
         URL = Env_Variables.BASE_URI + ENDPOINT
-        # print(URL)
-        raw_response = requests.get(URL)
-        assert raw_response.status_code == 200
-        api_projects_dict= Additional_Functionalities.convert_projects_html_dict(raw_response.text)
-        print(api_projects_dict)     
 
+        #Execute request
+        raw_response = requests.get(URL)
+
+        # Response Validation
+        assert raw_response.status_code == 200
+        api_projects_dict= Additional_Functionalities.convert_projects_html_dict(raw_response.text)    
+
+    # Validate both UI and API return same records or not
     @pytest.mark.temp
     def test_ui_api_response_validation(self):
         ui_projects_dict = Test_Projects.ui_projects_dict
