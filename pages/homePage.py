@@ -63,7 +63,7 @@ class homePage(BasePage):
             if repo_name and repo_description:
                 repositories_data_ui[repo_name] = repo_description
             elif  repo_name and not repo_description:
-                repositories_data_ui[repo_name] = "NA"
+                repositories_data_ui[repo_name] = None
         
         return repositories_data_ui
     
