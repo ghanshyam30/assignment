@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver import Firefox
 from pages.homePage import homePage
+from pages.repositoriesPage import repositoriesPage
 from config.config import Env_Variables
 from test.BaseTest import BaseTest
 import requests
@@ -19,7 +20,8 @@ class Test_Repositories(BaseTest):
     def test_get_repositories_info(self):
         self.homePageObj = homePage(self.driver)        
         self.homePageObj.select_category("repositories")
-        Test_Repositories.ui_repo_dict = self.homePageObj.find_repository_records()
+        self.repositoriesPageObj = repositoriesPage(self.driver)
+        Test_Repositories.ui_repo_dict = self.repositoriesPageObj.find_repository_records()
 
     # API test to get repositories records
     @pytest.mark.smoke
@@ -36,7 +38,7 @@ class Test_Repositories(BaseTest):
 
         dictionary_response_repos = raw_response.json()
         for item in dictionary_response_repos:
-            repo_name = repo_description =None
+            repo_name = repo_description = ''
             repo_name = item['name']
             repo_description = item['description']        
             Test_Repositories.api_repo_dict[repo_name] = repo_description        
@@ -45,9 +47,6 @@ class Test_Repositories(BaseTest):
 def test_ui_api_response_validation():
     ui_repo_dict = Test_Repositories.ui_repo_dict
     api_repo_dict = Test_Repositories.api_repo_dict
-    if len(ui_repo_dict) == len(api_repo_dict):
-        matched_records = Additional_Functionalities.compare_ui_api_responses(ui_repo_dict,api_repo_dict)
-        assert matched_records == len(ui_repo_dict)
-    else:
-        assert False             
-                          
+    print(ui_repo_dict)
+    print(api_repo_dict)
+    assert ui_repo_dict == api_repo_dict
