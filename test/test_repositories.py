@@ -8,11 +8,12 @@ import requests
 from lxml import html
 from additionalLibraries.additional_features import Additional_Functionalities
 
-
-
 class Test_Repositories(BaseTest):
-    
+    # Class variables - so that they can be accessible throughout the class
     ui_repo_dict = {}
+    api_repo_dict = {}
+
+    # UI test to get repositories records
     @pytest.mark.ui
     @pytest.mark.smoke
     def test_get_repositories_info(self):
@@ -20,27 +21,25 @@ class Test_Repositories(BaseTest):
         self.homePageObj.select_category("repositories")
         Test_Repositories.ui_repo_dict = self.homePageObj.find_repository_records()
 
-        # print(Test_Repositories.ui_repo_dict)
-
-    api_repo_dict = {}
+    # API test to get repositories records
     @pytest.mark.smoke
     def test_get_repositories_api(self):
+        # Prepare request 
         ENDPOINT = "/orgs/django/repos"
         URL = Env_Variables.BASE_URI + ENDPOINT
-        print(URL)
+
+        # Execute request
         raw_response = requests.get(URL)
+        
+        # Response validation
         assert raw_response.status_code == 200
+
         dictionary_response_repos = raw_response.json()
-        # print(dictionary_response_repos)
         for item in dictionary_response_repos:
-            # print(item['name'])
-            repo_name = repo_description =''
+            repo_name = repo_description =None
             repo_name = item['name']
             repo_description = item['description']        
-            Test_Repositories.api_repo_dict[repo_name] = repo_description
-        # print(repo_dict)
-        # Test_Repositories.api_repo_dict= Additional_Functionalities.convert_repo_html_dict(raw_response.text)
-        # print(Test_Repositories.api_repo_dict)        
+            Test_Repositories.api_repo_dict[repo_name] = repo_description        
 
 @pytest.mark.smoke
 def test_ui_api_response_validation():
