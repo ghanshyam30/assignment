@@ -12,6 +12,7 @@ from additionalLibraries.additional_features import Additional_Functionalities
 class Test_SearchRepository(BaseTest):
     
     # Search and select the repository
+    @pytest.mark.ui
     @pytest.mark.regression
     def test_search_and_open_repository(self):
         homePageObj = homePage(self.driver)       
