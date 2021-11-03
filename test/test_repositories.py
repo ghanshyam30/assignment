@@ -8,6 +8,8 @@ import requests
 from lxml import html
 from additionalLibraries.additional_features import Additional_Functionalities
 
+
+
 class Test_Repositories(BaseTest):
     
     ui_repo_dict = {}
@@ -23,12 +25,21 @@ class Test_Repositories(BaseTest):
     api_repo_dict = {}
     @pytest.mark.smoke
     def test_get_repositories_api(self):
-        ENDPOINT = "/orgs/django/repositories"
+        ENDPOINT = "/orgs/django/repos"
         URL = Env_Variables.BASE_URI + ENDPOINT
         print(URL)
         raw_response = requests.get(URL)
         assert raw_response.status_code == 200
-        Test_Repositories.api_repo_dict= Additional_Functionalities.convert_repo_html_dict(raw_response.text)
+        dictionary_response_repos = raw_response.json()
+        # print(dictionary_response_repos)
+        for item in dictionary_response_repos:
+            # print(item['name'])
+            repo_name = repo_description =''
+            repo_name = item['name']
+            repo_description = item['description']        
+            Test_Repositories.api_repo_dict[repo_name] = repo_description
+        # print(repo_dict)
+        # Test_Repositories.api_repo_dict= Additional_Functionalities.convert_repo_html_dict(raw_response.text)
         # print(Test_Repositories.api_repo_dict)        
 
 @pytest.mark.smoke
