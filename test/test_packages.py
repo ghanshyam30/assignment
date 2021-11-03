@@ -11,6 +11,7 @@ from additionalLibraries.additional_features import Additional_Functionalities
 class Test_Packages(BaseTest):
     
     # Navigate to packages section
+    @pytest.mark.ui
     @pytest.mark.regression
     def test_get_packages_info(self):
         self.homePageObj = homePage(self.driver)        
