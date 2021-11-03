@@ -15,18 +15,17 @@ class repositoriesPage(BasePage):
     TYPE_OPTIONS_FORKS = "//span[@class='text-normal' and text()='Forks']"
     TYPE_OPTIONS_ARCHIVED = "//span[@class='text-normal' and text()='Archived']"
     TYPE_OPTIONS_MIRRORS = "//span[@class='text-normal' and text()='Mirrors']"
-    # SEARCH_SUBMIT = ""
     
     def __init__(self,driver):
         super().__init__(driver)
         self.driver = driver
-        self.wait_for_element = WebDriverWait(self.driver,7)
 
+    # Search repository from search functionality on UI
     def search_repositories_with_text(self, text_to_search_param):
         text_to_search = text_to_search_param
         self.input_text(self.SEARCHBOX_LOCATOR, text_to_search)
 
-
+    # To apply type filter for search operation
     def select_type_for_search(self,type_param):
         self.click_element(self.SEARCH_TYPE_OPTIONS)
         self.type = type_param
@@ -41,8 +40,8 @@ class repositoriesPage(BasePage):
         else:
             self.click_element(self.TYPE_OPTIONS_ALL)
     
+    # To open expected repository after search
     def choose_repository(self, repository_name_param):
         self.driver.refresh()
         REPOSITORY_LOCATOR = "//a[@itemprop='name codeRepository' and contains(text(),'" + repository_name_param + "')]"
-        print("Select repository:",REPOSITORY_LOCATOR)
         self.click_element(REPOSITORY_LOCATOR)
