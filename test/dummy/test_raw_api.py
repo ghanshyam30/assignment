@@ -1,6 +1,7 @@
 import pytest
 from lxml import html
 import requests
+import json
 @pytest.mark.skip
 def test_get():
     BASE_URI = "https://github.com"
@@ -38,3 +39,26 @@ def test_get():
         api_resp_dict[repo_name] = repo_description
 
     print(api_resp_dict['channels_redis'])
+
+
+@pytest.mark.dict
+def test_get_repos():
+    BASE_URI = "https://api.github.com"
+    ENDPOINT = "/orgs/django/repos"
+    header_params ={'accept':'application/vnd.github.v3+json'}
+
+    URL = BASE_URI + ENDPOINT
+    # print(URL)
+    repo_response_object = requests.get(URL,headers = header_params)
+    # print(repo_resp_bytes.text)
+
+    dictionary_response_repos = repo_response_object.json()
+    # print(dictionary_response_repos)
+    repo_dict = {}
+    for item in dictionary_response_repos:
+        # print(item['name'])
+        repo_name = repo_description =''
+        repo_name = item['name']
+        repo_description = item['description']        
+        repo_dict[repo_name] = repo_description
+    print(repo_dict)
