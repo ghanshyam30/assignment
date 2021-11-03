@@ -10,8 +10,8 @@ class homePage(BasePage):
     #Locators
     REPOSITORIES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'repositories')]"
     REPOSITORIES_SECTION_LIST_LOCATOR = "//*[@itemprop='owns']"
-    REPOSITORIES_NAME_LOCATOR = "following::h3/a"
-    REPOSITORIES_DESCRIPTION_LOCATOR = "following::p"
+    REPOSITORIES_NAME_LOCATOR = "descendant::h3/a"
+    REPOSITORIES_DESCRIPTION_LOCATOR = "descendant::p"
 
     PACKAGES_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'packages')]"
     PROJECTS_LOCATOR = "//a[contains(@class,'UnderlineNav-item') and contains(@href,'projects')]"
@@ -49,10 +49,10 @@ class homePage(BasePage):
             # Set the name and description to None
             repo_name = repo_description = None          
             
-            repo_name = record.find_element_by_xpath("descendant::h3/a").text
+            repo_name = record.find_element_by_xpath(self.REPOSITORIES_NAME_LOCATOR).text
             # print(repo_name)
             try: #Get the repository description
-                repo_description = record.find_element_by_xpath("descendant::p").text
+                repo_description = record.find_element_by_xpath(self.REPOSITORIES_DESCRIPTION_LOCATOR).text
                 # print(repo_description)
             except Exception: # Exception handling
                 print("Repo description not fond")
