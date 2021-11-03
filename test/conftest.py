@@ -20,5 +20,6 @@ def setup(request):
     yield
     driver.close()  # Replace this with quit() later
 
+# To set the custom report title
 def pytest_html_report_title(report):
     report.title = "Assignment: test report"
