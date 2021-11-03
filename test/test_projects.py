@@ -14,6 +14,7 @@ class Test_Projects(BaseTest):
     api_projects_dict ={}
 
     # UI test to find all projects
+    @pytest.mark.ui
     @pytest.mark.regression
     def test_get_projects_info(self):
         self.homePageObj = homePage(self.driver)        
@@ -21,7 +22,6 @@ class Test_Projects(BaseTest):
         self.projectsPageObj = projectsPage(self.driver)
         self.projectsPageObj.choose_released_projects()
         Test_Projects.ui_projects_dict = self.projectsPageObj.find_project_records()
-        print(Test_Projects.ui_projects_dict)
 
     # API test to find all projects
     @pytest.mark.regression
@@ -35,19 +35,19 @@ class Test_Projects(BaseTest):
 
         # Response Validation
         assert raw_response.status_code == 200
-        api_projects_dict= Additional_Functionalities.convert_projects_html_dict(raw_response.text)    
+        
+        dictionary_response_projects = raw_response.json()
+        for item in dictionary_response_projects:
+            project_name = project_description = ''
+            project_name = item['name']
+            project_description = item['body']        
+            Test_Projects.api_projects_dict[project_name] = project_description
 
     # Validate both UI and API return same records or not
-    @pytest.mark.temp
+    @pytest.mark.regression
     def test_ui_api_response_validation(self):
-        ui_projects_dict = Test_Projects.ui_projects_dict
-        api_projects_dict = Test_Projects.api_projects_dict
-        print(len(api_projects_dict))
-        print(len(ui_projects_dict))
-        if len(ui_projects_dict) == len(api_projects_dict):
-            matched_records = Additional_Functionalities.compare_ui_api_responses(ui_projects_dict,api_projects_dict)
-            print(matched_records)
-            print(len(ui_projects_dict))
-            assert matched_records == len(ui_projects_dict)
-        else:
-            assert False
+        ui_projects_dict = self.ui_projects_dict
+        print(ui_projects_dict)
+        api_projects_dict = self.api_projects_dict
+        print(api_projects_dict)
+        assert ui_projects_dict == api_projects_dict
