@@ -11,8 +11,9 @@ from additionalLibraries.additional_features import Additional_Functionalities
 
 class Test_SearchRepository(BaseTest):
     
+    # Search and select the repository
     @pytest.mark.regression
-    def test_get_repositories_info(self):
+    def test_search_and_open_repository(self):
         homePageObj = homePage(self.driver)       
         homePageObj.select_category("repositories")
         repoSearchObj = repositoriesPage(self.driver)
