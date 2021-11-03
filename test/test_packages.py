@@ -10,18 +10,21 @@ from additionalLibraries.additional_features import Additional_Functionalities
 
 class Test_Packages(BaseTest):
     
+    # Navigate to packages section
     @pytest.mark.regression
     def test_get_packages_info(self):
         self.homePageObj = homePage(self.driver)        
         self.homePageObj.select_category("packages")
 
-    @pytest.mark.regression
+    # 
+    @pytest.mark.xfail
     def test_get_packages_api(self):
+        # Prepare request 
         ENDPOINT = "/orgs/django/packages"
         URL = Env_Variables.BASE_URI + ENDPOINT
-        print(URL)
+
+        # Execute REST
         raw_response = requests.get(URL)
+
+        # Response Validation
         assert raw_response.status_code == 200
-        Test_Packages.api_repo_dict= Additional_Functionalities.convert_html_dict(raw_response.text)
-        # print(Test_Repositories.api_repo_dict)        
-             
