@@ -26,12 +26,18 @@ class Test_Repositories(BaseTest):
     # API test to get repositories records
     @pytest.mark.smoke
     def test_get_repositories_api(self):
+        
         # Prepare request 
-        ENDPOINT = "/orgs/django/repos"
-        URL = Env_Variables.BASE_URI + ENDPOINT
+        if self.user_type == "org":
+            ENDPOINT = "/orgs/"+ self.repo_to_test +"/repos"
+            URL = Env_Variables.BASE_URI + ENDPOINT
+        else:
+            ENDPOINT = "/users/"+ self.repo_to_test +"/repos"
+            URL = Env_Variables.BASE_URI + ENDPOINT
 
         # Execute request
         raw_response = requests.get(URL)
+        print("URL:",URL)
         
         # Response validation
         assert raw_response.status_code == 200
