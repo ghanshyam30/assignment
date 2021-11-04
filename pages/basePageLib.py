@@ -29,6 +29,3 @@ class BasePage:
     def input_text(self, element_for_input, text_to_input):
         element_to_input = self.wait_for_element_visibility(element_for_input)
         element_to_input.send_keys(text_to_input)
-        
-        
-        
