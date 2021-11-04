@@ -16,10 +16,6 @@ class homePage(BasePage):
     def __init__(self,driver):
         super().__init__(driver)
         self.driver = driver
-
-    # Replaced by setup method
-    # def load(self):
-    #     self.driver.get(Env_Variables.BASE_URL)
     
     def select_category(self,category_param):
         if "repositor" in category_param.lower():
@@ -31,7 +27,3 @@ class homePage(BasePage):
         
         self.click_element(set_category)
         self.driver.refresh()
-    
-    # Replaced by tear down
-    # def closeDriver(self):
-    #     self.driver.close()
