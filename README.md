@@ -2,6 +2,9 @@
 UI and REST hybrid automation
 ## How to use
 Root directory of the project: assignment. There are to markers divided as smoke and regression, smoke has the base use case and regression has other use cases
+### Update REPO_LIST
+1. Update REPO_LIST from config\config.py file to have all account names you want to test.
+2. This REPO_LIST acts as the parameter for the somke test, so we can execute it like for 100 or so times for different accounts
 **Command to run test**
 > pytest -m {marker}
 
