@@ -13,6 +13,7 @@ class Test_Repositories(BaseTest):
     # Class variables - so that they can be accessible throughout the class
     ui_repo_dict = {}
     api_repo_dict = {}
+    repositories_url = ""
 
     # UI test to get repositories records
     @pytest.mark.ui
@@ -20,6 +21,7 @@ class Test_Repositories(BaseTest):
     def test_get_repositories_info(self):
         self.homePageObj = homePage(self.driver)        
         self.homePageObj.select_category("repositories")
+        self.repositories_url = self.driver.current_url
         self.repositoriesPageObj = repositoriesPage(self.driver)
         Test_Repositories.ui_repo_dict = self.repositoriesPageObj.find_repository_records()
 
@@ -28,7 +30,7 @@ class Test_Repositories(BaseTest):
     def test_get_repositories_api(self):
         
         # Prepare request 
-        if self.user_type == "org":
+        if "/orgs/" in self.repositories_url:
             ENDPOINT = "/orgs/"+ self.repo_to_test +"/repos"
             URL = Env_Variables.BASE_URI + ENDPOINT
         else:
