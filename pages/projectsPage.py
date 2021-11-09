@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config.config import Env_Variables
 from pages.basePageLib import BasePage
+import logging
 
 class projectsPage(BasePage):
     
@@ -39,7 +40,7 @@ class projectsPage(BasePage):
             try:
                 projects_description = record.find_element_by_xpath(self.PROJECTS_DETAILS_LOCATOR).text
             except Exception:
-                print("Project description not fond")
+                logging.warning("Project description not fond")
 
             projects_data_ui[projects_name] = projects_description
         

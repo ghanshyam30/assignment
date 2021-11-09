@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config.config import Env_Variables
 from pages.basePageLib import BasePage
+import logging
 
 class homePage(BasePage):
     
@@ -25,5 +26,7 @@ class homePage(BasePage):
         elif "project" in category_param.lower():
             set_category = self.PROJECTS_LOCATOR
         
+        logging.info(f"Selecting category: {set_category}")
         self.click_element(set_category)
+
         self.driver.refresh()
