@@ -8,6 +8,7 @@ from test.BaseTest import BaseTest
 import requests
 from lxml import html
 from additionalLibraries.additional_features import Additional_Functionalities
+import logging
 
 class Test_Repositories(BaseTest):
     # Class variables - so that they can be accessible throughout the class
@@ -39,7 +40,7 @@ class Test_Repositories(BaseTest):
 
         # Execute request
         raw_response = requests.get(URL)
-        print("URL:",URL)
+        logging.info(f"URL:{URL}")
         
         # Response validation
         assert raw_response.status_code == 200
@@ -55,6 +56,6 @@ class Test_Repositories(BaseTest):
 def test_ui_api_response_validation():
     ui_repo_dict = Test_Repositories.ui_repo_dict
     api_repo_dict = Test_Repositories.api_repo_dict
-    print(ui_repo_dict)
-    print(api_repo_dict)
+    logging.info(f"UI dict: {ui_repo_dict}")
+    logging.info(f"API dict: {api_repo_dict}")
     assert ui_repo_dict == api_repo_dict

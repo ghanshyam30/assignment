@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config.config import Env_Variables
 from pages.basePageLib import BasePage
+import logging
 
 class repositoriesPage(BasePage):
     
@@ -70,7 +71,7 @@ class repositoriesPage(BasePage):
                 repo_description = record.find_element_by_xpath(self.REPOSITORIES_DESCRIPTION_LOCATOR).text
                 # print(repo_description)
             except Exception: # Exception handling
-                print("Repo description not fond")
+                logging.warning(f"Repository description not fond for repo name: {repo_name}")
 
             repositories_data_ui[repo_name]=repo_description
 
