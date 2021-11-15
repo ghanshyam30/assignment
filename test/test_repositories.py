@@ -52,10 +52,10 @@ class Test_Repositories(BaseTest):
             repo_description = item['description']        
             Test_Repositories.api_repo_dict[repo_name] = repo_description        
 
-@pytest.mark.smoke
-def test_ui_api_response_validation():
-    ui_repo_dict = Test_Repositories.ui_repo_dict
-    api_repo_dict = Test_Repositories.api_repo_dict
-    logging.info(f"UI dict: {ui_repo_dict}")
-    logging.info(f"API dict: {api_repo_dict}")
-    assert ui_repo_dict == api_repo_dict
+    @pytest.mark.smoke
+    def test_ui_api_response_validation(self):
+        ui_repo_dict = Test_Repositories.ui_repo_dict
+        api_repo_dict = Test_Repositories.api_repo_dict
+        logging.info(f"UI dict: {ui_repo_dict}")
+        logging.info(f"API dict: {api_repo_dict}")
+        assert ui_repo_dict == api_repo_dict
