@@ -31,6 +31,14 @@ Root directory of the project: assignment, so all the commands to be fired shoul
 6. reports - Test exectuion report is saved in this directory with report.html name
 7. pytest.ini - file has default command line options to run pytest command
 
+## Goals
+- [x] POM model
+- [x] HTML reporting
+- [x] Setup and teardown
+- [x] Parameterization
+- [] Screenshot integration
+
+
 ## References
 - [HTML parser referece](https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests)
 - [String split and join back](https://www.kite.com/python/answers/how-to-remove-spaces,-tabs,-and-newlines-in-a-string-in-python)
