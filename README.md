@@ -32,7 +32,7 @@ Root directory of the project: assignment, so all the commands to be fired shoul
 7. pytest.ini - file has default command line options to run pytest command
 
 ## References
-- HTML parser referece - https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests
-- String split and join back - https://www.kite.com/python/answers/how-to-remove-spaces,-tabs,-and-newlines-in-a-string-in-python
-- HTML-report documentation - https://pytest-html.readthedocs.io/en/latest/
-- Video tutorial reference - https://youtu.be/qBK5I_QApCg
+- [HTML parser referece](https://docs.python-guide.org/scenarios/scrape/#lxml-and-requests)
+- [String split and join back](https://www.kite.com/python/answers/how-to-remove-spaces,-tabs,-and-newlines-in-a-string-in-python)
+- [HTML-report documentation](https://pytest-html.readthedocs.io/en/latest/)
+- Video tutorial reference - [Naveen Automation - python selenium POM with Pytest](https://youtu.be/qBK5I_QApCg)
