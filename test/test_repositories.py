@@ -20,16 +20,18 @@ class Test_Repositories(BaseTest):
     @pytest.mark.ui
     @pytest.mark.smoke
     def test_get_repositories_info(self):
+        Test_Repositories.ui_repo_dict = {}
         self.homePageObj = homePage(self.driver)        
         self.homePageObj.select_category("repositories")
         self.repositories_url = self.driver.current_url
         self.repositoriesPageObj = repositoriesPage(self.driver)
         Test_Repositories.ui_repo_dict = self.repositoriesPageObj.find_repository_records()
+        logging.debug(f"{Test_Repositories.ui_repo_dict}")
 
     # API test to get repositories records
     @pytest.mark.smoke
     def test_get_repositories_api(self):
-        
+        Test_Repositories.api_repo_dict = {}
         # Prepare request 
         if "/orgs/" in self.repositories_url:
             ENDPOINT = "/orgs/"+ self.repo_to_test +"/repos"
@@ -50,7 +52,8 @@ class Test_Repositories(BaseTest):
             repo_name = repo_description = ''
             repo_name = item['name']
             repo_description = item['description']        
-            Test_Repositories.api_repo_dict[repo_name] = repo_description        
+            Test_Repositories.api_repo_dict[repo_name] = repo_description
+        logging.debug(f"{Test_Repositories.api_repo_dict}")        
 
     @pytest.mark.smoke
     def test_ui_api_response_validation(self):
