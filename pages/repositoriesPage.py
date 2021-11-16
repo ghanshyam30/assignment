@@ -74,11 +74,5 @@ class repositoriesPage(BasePage):
                 logging.warning(f"Repository description not fond for repo name: {repo_name}")
 
             repositories_data_ui[repo_name]=repo_description
-
-            # OLD LOGIC to be deleted
-            # if repo_name and repo_description:
-            #     repositories_data_ui[repo_name] = repo_description
-            # elif  repo_name and not repo_description:
-            #     repositories_data_ui[repo_name] = None
         
         return repositories_data_ui
