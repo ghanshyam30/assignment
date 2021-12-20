@@ -4,6 +4,7 @@ from config.config import Env_Variables
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import logging
 """
 Things to do:
 1. webdriver wait
@@ -14,7 +15,7 @@ class BasePage:
     # Constructor to set driver instance and define explicit wait
     def __init__(self,driver):
         self.driver = driver
-        self.wait_for_element = WebDriverWait(self.driver,7)
+        self.wait_for_element = WebDriverWait(self.driver,20)
 
     # Explicit wait for element to before every element action
     def wait_for_element_visibility(self, element_to_wait_for):
@@ -29,3 +30,4 @@ class BasePage:
     def input_text(self, element_for_input, text_to_input):
         element_to_input = self.wait_for_element_visibility(element_for_input)
         element_to_input.send_keys(text_to_input)
+        logging.info(f"Input text to web element {text_to_input}")
